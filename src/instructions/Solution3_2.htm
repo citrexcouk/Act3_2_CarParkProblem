@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+
+<title>Solution 3.2 - The car park problem.</title>
+
+<link rel="stylesheet" type="text/css" href="../../../../m362.css">
+
+</head>
+
+<body>
+<h1>Solution 3.2 - The car park problem.</h1>
+
+<h3>Sample Solution - the <code>Departures</code> class</h3>
+<p>Here is our version of the <code>Departures</code> class:</p>
+
+<pre>
+class Departures extends Thread 
+{
+    CarParkControl carpark;
+
+    Departures(CarParkControl c) 
+    {
+        carpark = c;
+    }
+
+    public void run() 
+    {
+        try
+        {   
+            carpark.depart();
+        }
+        catch(InterruptedException e)
+        {
+            System.out.println("Thread interrupted: " +
+               "exiting without performing depart");
+        }
+    }
+}
+
+</pre>
+<h3>Sample Solution - the method <code>main</code></h3>
+<p>Here is our version of the method <code>main</code>:</p>
+<pre>
+public static void main(String[] args)
+{
+    CarParkControl carpark = new CarParkControl(2);
+    Thread t1 = new Departures(carpark);
+    Thread t2 = new Departures(carpark);
+    Thread t3 = new Departures(carpark);
+        
+    Thread t4 = new Arrivals(carpark);
+    Thread t5 = new Arrivals(carpark);
+    Thread t6 = new Arrivals(carpark); 
+    Thread t7 = new Arrivals(carpark);             
+            
+    t1.start();
+    t2.start();
+    t3.start();
+    t4.start();
+    t5.start();
+    t6.start();
+    t7.start();
+        
+    System.out.println("main is done");
+} 
+</pre>
+</body>
+</html>

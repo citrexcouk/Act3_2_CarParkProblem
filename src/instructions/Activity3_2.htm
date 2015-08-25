@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Activity 3.2 - The car park problem.</title>
+
+<link rel="stylesheet" type="text/css" href="../../../../m362.css">
+</head>
+
+<body>
+<h1>Activity 3.2 - The car park problem.</h1>
+
+<h2>Purpose </h2>
+
+
+<p>The purpose of this activity is:</p> 
+<ul>
+	<li>to study how to program multi-threaded programs </li>
+	<li>to explore Java's wait/notify mechanism through study of the example of the car park problem.</li>
+</ul>
+
+<h2>Materials </h2>
+<p>We have provided an incomplete project which has four classes: 
+<ul>
+<li><code>CarParkControl</code> -  controls the arrival and 
+	departures of cars from a car park. It has two methods: <code>arrive</code> and <code>depart</code>, and 
+	variables <code>spaces</code> and <code>capacity</code>. </li>
+<li><code>Main</code> - has the <code>main</code> method and is intended to set threads running.</li>
+<li><code>Arrivals</code> - this class extends the <code>Thread</code> class. It has a single method <code>run</code>, 
+which invokes the <code>arrive</code> method on the <code>CarParkControl</code> object.
+</li>
+<li><code>CarParkCounter</code> - used by the <code> CarParkControl</code> class.</li>
+</ul>
+
+<h2>Task </h2>
+<p>In this activity you are required to complete the project by creating a <code>Thread</code> class 
+similar to <code>Arrivals</code> (but now for the departing cars) and completing the
+<code>main</code> method.</p>
+
+<h3>Instructions </h3>
+<ol>
+	<li><p>Study class <code>CarParkControl</code> and make sure you understand how the methods 
+	<code>arrive</code> and <code>depart</code> work.</p></li>
+	<li><p>Create a class <code>Departures</code> and add it to the package and project for the current problem. 
+	This new class should behave similar to <code>Arrivals</code>, with the
+      obvious difference that it deals with a departure rather than an arrival.</p></li>
+
+	<li><p>Complete the implementation of the method <code>main</code>:</p>
+	<ul>
+		<li><p>Create an instance of class <code> CarParkControl</code>.</p></li>
+		<li><p>Create a number of arrivals and departures threads for the <code>CarParkControl</code>
+          object. To observe some interesting effects make sure that you don't
+          create the same number of arrivals as departures, and also make sure
+          you create more arrivals than the capacity of the car park.</p></li>
+		<li><p>Set the threads running, and again, to observe some interesting
+          effects, let the departures start <em>before</em> the arrivals.</p></li>
+	</ul>
+
+	</li>
+	<li><p>Observe the output from running program. You should see that even though
+      the departures had been started before the arrivals, they complete
+      after the arrivals threads have finished. If you had more departures than
+      arrivals, then you should notice that not all the departures thread
+      complete their execution, as they should be kept in the <code>WAITING</code> state,
+      waiting for the condition to change.</p></li>
+</ol>
+
+<h2>Notes</h2>
+<p>If you have any difficulties with steps 1 and 2 of this activity, you may
+wish to have another look at the producer-consumer problem studied in activity
+3.1. </p>
+<p>It is important to remember that when you start threads running, that you
+should use the <code>start</code> method, as this will in turn call the <code>run</code>
+method. That is, <code>run</code> should not be called directly.</p>
+
+</body>
+</html>
